@@ -67,13 +67,13 @@ public class restaurant extends Application {
         drinkLabel.setFont(Font.font("System", FontWeight.BOLD,15));
         ToggleGroup drinksGroup = new ToggleGroup();
         RadioButton tea = new RadioButton("Sweet Tea");
-        blackTea.setToggleGroup(drinksGroup);
+        tea.setToggleGroup(drinksGroup);
         RadioButton soda = new RadioButton("Soda");
-        greenTea.setToggleGroup(drinksGroup);
+        soda.setToggleGroup(drinksGroup);
         RadioButton coffee = new RadioButton("Coffee");
         coffee.setToggleGroup(drinksGroup);
         RadioButton juice = new RadioButton("Juice");
-        orangeJuice.setToggleGroup(drinksGroup);
+        juice.setToggleGroup(drinksGroup);
 
         VBox foodBox = new VBox(eatLabel, pizza, chickenSandwich, salad, pasta);
         foodBox.setSpacing(10);
