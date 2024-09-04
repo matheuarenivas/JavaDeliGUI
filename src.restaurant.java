@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 //By Matthew Arenivas
-public class hw1 extends Application {
+public class restaurant extends Application {
 
     @Override
     public void start(Stage primaryStage) {
@@ -21,7 +21,7 @@ public class hw1 extends Application {
         Text app_layout = new Text("Application UI Layout:");
         app_layout.setFont(Font.font("System", FontWeight.BOLD, 20));
 
-        Text title = new Text("Joe's Deli");
+        Text title = new Text("Restaurant");
         title.setFont(Font.font("System", FontWeight.BOLD, 20));
         Text subtitle = new Text("By Matthew Arenivas");
         subtitle.setFont(Font.font("System", FontWeight.SEMI_BOLD, 10));
@@ -58,28 +58,28 @@ public class hw1 extends Application {
 
         Label eatLabel = new Label("Eat:");
         eatLabel.setFont(Font.font("System", FontWeight.BOLD,15));
-        CheckBox eggSandwich = new CheckBox("Egg Sandwich");
+        CheckBox pizza = new CheckBox("Pizza");
         CheckBox chickenSandwich = new CheckBox("Chicken Sandwich");
-        CheckBox bagel = new CheckBox("Bagel");
-        CheckBox potatoSalad = new CheckBox("Potato salad");
+        CheckBox salad = new CheckBox("Salad");
+        CheckBox pasta = new CheckBox("Pasta");
 
         Label drinkLabel = new Label("Drink:");
         drinkLabel.setFont(Font.font("System", FontWeight.BOLD,15));
         ToggleGroup drinksGroup = new ToggleGroup();
-        RadioButton blackTea = new RadioButton("Black Tea");
+        RadioButton tea = new RadioButton("Sweet Tea");
         blackTea.setToggleGroup(drinksGroup);
-        RadioButton greenTea = new RadioButton("Green Tea");
+        RadioButton soda = new RadioButton("Soda");
         greenTea.setToggleGroup(drinksGroup);
         RadioButton coffee = new RadioButton("Coffee");
         coffee.setToggleGroup(drinksGroup);
-        RadioButton orangeJuice = new RadioButton("Orange Juice");
+        RadioButton juice = new RadioButton("Juice");
         orangeJuice.setToggleGroup(drinksGroup);
 
-        VBox foodBox = new VBox(eatLabel, eggSandwich, chickenSandwich, bagel, potatoSalad);
+        VBox foodBox = new VBox(eatLabel, pizza, chickenSandwich, salad, pasta);
         foodBox.setSpacing(10);
         foodBox.setPadding(new Insets(10));
 
-        VBox drinkBox = new VBox(drinkLabel, blackTea, greenTea, coffee, orangeJuice);
+        VBox drinkBox = new VBox(drinkLabel, tea, soda, coffee, juice);
         drinkBox.setSpacing(10);
         drinkBox.setPadding(new Insets(10));
 
@@ -113,21 +113,21 @@ public class hw1 extends Application {
             StringBuilder bill = new StringBuilder("Bill:\n");
 
             // Food selection
-            if (eggSandwich.isSelected()) {
+            if (pizza.isSelected()) {
                 total += 7.99;
-                bill.append("Egg Sandwich: $7.99\n");
+                bill.append("Pizza: $7.99\n");
             }
             if (chickenSandwich.isSelected()) {
                 total += 9.99;
                 bill.append("Chicken Sandwich: $9.99\n");
             }
-            if (bagel.isSelected()) {
+            if (salad.isSelected()) {
                 total += 2.50;
-                bill.append("Bagel: $2.50\n");
+                bill.append("Salad: $2.50\n");
             }
-            if (potatoSalad.isSelected()) {
+            if (pasta.isSelected()) {
                 total += 4.49;
-                bill.append("Potato Salad: $4.49\n");
+                bill.append("Pasta: $4.49\n");
             }
 
             // Drink selection
@@ -135,27 +135,27 @@ public class hw1 extends Application {
             if (selectedDrink != null) {
                 String drink = selectedDrink.getText();
                 switch (drink) {
-                    case "Black Tea":
+                    case "Sweet Tea":
                         total += 1.25;
-                        bill.append("Black Tea: $1.25\n");
+                        bill.append("Sweet Tea: $1.25\n");
                         break;
-                    case "Green Tea":
+                    case "Soda":
                         total += 0.99;
-                        bill.append("Green Tea: $0.99\n");
+                        bill.append("Soda: $0.99\n");
                         break;
                     case "Coffee":
                         total += 1.99;
                         bill.append("Coffee: $1.99\n");
                         break;
-                    case "Orange Juice":
+                    case "Juice":
                         total += 2.25;
-                        bill.append("Orange Juice: $2.25\n");
+                        bill.append("Juice: $2.25\n");
                         break;
                 }
             }
 
             // Calculate total with tax
-            double tax = total * 0.07;
+            double tax = total * 0.10;
             double finalTotal = total + tax;
             bill.append("\nTax: $").append(String.format("%.2f", tax));
             bill.append("\nTotal: $").append(String.format("%.2f", finalTotal));
@@ -166,10 +166,10 @@ public class hw1 extends Application {
 
         cancelButton.setOnAction(e -> {
             // Clear selections
-            eggSandwich.setSelected(false);
+            pizza.setSelected(false);
             chickenSandwich.setSelected(false);
-            bagel.setSelected(false);
-            potatoSalad.setSelected(false);
+            salad.setSelected(false);
+            pasta.setSelected(false);
             drinksGroup.selectToggle(null);
             // Clear the bill
             billArea.clear();
@@ -177,16 +177,16 @@ public class hw1 extends Application {
 
         confirmButton.setOnAction(e -> {
             // Keep the bill but clear the selections
-            eggSandwich.setSelected(false);
+            pizza.setSelected(false);
             chickenSandwich.setSelected(false);
-            bagel.setSelected(false);
-            potatoSalad.setSelected(false);
+            salad.setSelected(false);
+            pasta.setSelected(false);
             drinksGroup.selectToggle(null);
         });
 
         // Creating the Scene and showing the Stage
         Scene scene = new Scene(root, 700, 500);
-        primaryStage.setTitle("Joe's Deli Order System");
+        primaryStage.setTitle("Restaurant");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
